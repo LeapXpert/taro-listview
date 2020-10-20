@@ -253,7 +253,8 @@ class ListView extends Component<Props, State> {
       damping,
       circleColor,
       autoHeight,
-      scrollIntoView
+      scrollIntoView,
+      isScrollWithAnimation = false
     } = this.props;
     const {
       launchError = false,
@@ -283,7 +284,7 @@ class ListView extends Component<Props, State> {
           scrollY={canScrollY}
           lowerThreshold={80}
           onScrollToLower={this.handleScrollToLower}
-          scrollWithAnimation
+          scrollWithAnimation={isScrollWithAnimation}
           scrollIntoView={scrollIntoView}
           onScroll={this.onScroll}
         >
@@ -357,7 +358,7 @@ class ListView extends Component<Props, State> {
           lowerThreshold={80}
           scrollIntoView={scrollIntoView}
           onScrollToLower={this.handleScrollToLower}
-          scrollWithAnimation
+          scrollWithAnimation={isScrollWithAnimation}
           onScroll={this.onScroll}
         >
           <View
