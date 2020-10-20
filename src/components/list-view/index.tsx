@@ -252,7 +252,8 @@ class ListView extends Component<Props, State> {
       footerLoadedText,
       damping,
       circleColor,
-      autoHeight
+      autoHeight,
+      scrollIntoView
     } = this.props;
     const {
       launchError = false,
@@ -283,6 +284,7 @@ class ListView extends Component<Props, State> {
           lowerThreshold={80}
           onScrollToLower={this.handleScrollToLower}
           scrollWithAnimation
+          scrollIntoView={scrollIntoView}
           onScroll={this.onScroll}
         >
           <View
@@ -406,6 +408,7 @@ class ListView extends Component<Props, State> {
                 )}
                 {/* custom footer loaded page*/}
                 {customFooterLoaded && this.props.renderFooterLoaded}
+                <View id='bottom'></View>
               </View>
             </View>
           </View>

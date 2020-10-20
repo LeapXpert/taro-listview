@@ -34,6 +34,7 @@ export interface Props extends React.Props<any> {
   showIndicator?: boolean;
   lazyStorage?: string;
   autoHeight?: boolean;
+  scrollIntoView?: string;
 }
 
 export interface Indicator {
