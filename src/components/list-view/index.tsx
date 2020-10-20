@@ -338,6 +338,7 @@ class ListView extends Component<Props, State> {
                 )}
                 {/* custom footer loaded page*/}
                 {customFooterLoaded && this.props.renderFooterLoaded}
+                <View id='bottom'></View>
               </View>
             </View>
           </View>
@@ -408,7 +409,6 @@ class ListView extends Component<Props, State> {
                 )}
                 {/* custom footer loaded page*/}
                 {customFooterLoaded && this.props.renderFooterLoaded}
-                <View id='bottom'></View>
               </View>
             </View>
           </View>
