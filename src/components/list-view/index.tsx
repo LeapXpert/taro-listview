@@ -355,6 +355,7 @@ class ListView extends Component<Props, State> {
           style={style}
           scrollY={canScrollY}
           lowerThreshold={80}
+          scrollIntoView={scrollIntoView}
           onScrollToLower={this.handleScrollToLower}
           scrollWithAnimation
           onScroll={this.onScroll}
@@ -409,6 +410,7 @@ class ListView extends Component<Props, State> {
                 )}
                 {/* custom footer loaded page*/}
                 {customFooterLoaded && this.props.renderFooterLoaded}
+                <View id='bottom'></View>
               </View>
             </View>
           </View>
