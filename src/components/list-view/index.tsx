@@ -280,10 +280,10 @@ class ListView extends Component<Props, State> {
     const footerLoading = showFooter && !launchFooterLoading && hasMore;
     const customFooterLoading = showFooter && launchFooterLoading && hasMore; // 渲染renderNoMore
 
-    const firstTest = this.targetScrollTop !== this.state.scrollTop && this.reachedTargetScrollTop === true;
-    const secondTest = scrollDeltaY !== this.prevScrollDeltaY;
+    const isScrollingRequired = this.targetScrollTop !== this.state.scrollTop && this.reachedTargetScrollTop === true;
+    const isDeltaYChanged = scrollDeltaY !== this.prevScrollDeltaY;
 
-    if (scrollDeltaY && (firstTest || secondTest)) {
+    if (scrollDeltaY && (isScrollingRequired || isDeltaYChanged)) {
       this.reachedTargetScrollTop = false;
 
       const revisiting = this.targetScrollTop === this.state.scrollTop + scrollDeltaY;
