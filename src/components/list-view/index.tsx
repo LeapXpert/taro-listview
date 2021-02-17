@@ -51,6 +51,12 @@ class ListView extends Component<Props, State> {
 
   touchScrollTop = 0;
 
+  targetScrollTop = null;
+
+  reachedTargetScrollTop = true;
+
+  prevScrollDeltaY = null;
+
   componentWillMount(): void {
 
   }
@@ -254,7 +260,8 @@ class ListView extends Component<Props, State> {
       circleColor,
       autoHeight,
       scrollIntoView,
-      isScrollWithAnimation = false
+      isScrollWithAnimation = false,
+      scrollDeltaY
     } = this.props;
     const {
       launchError = false,
@@ -272,6 +279,20 @@ class ListView extends Component<Props, State> {
     const customFooterLoaded = showFooter && launchFooterLoaded && !hasMore; // 渲染renderLoadedText
     const footerLoading = showFooter && !launchFooterLoading && hasMore;
     const customFooterLoading = showFooter && launchFooterLoading && hasMore; // 渲染renderNoMore
+
+    const firstTest = this.targetScrollTop !== this.state.scrollTop && this.reachedTargetScrollTop === true;
+    const secondTest = scrollDeltaY !== this.prevScrollDeltaY;
+
+    if (scrollDeltaY && (firstTest || secondTest)) {
+      this.reachedTargetScrollTop = false;
+
+      const revisiting = this.targetScrollTop === this.state.scrollTop + scrollDeltaY;
+      this.targetScrollTop = !revisiting ? this.state.scrollTop + scrollDeltaY : this.state.scrollTop + scrollDeltaY + 1;
+      this.prevScrollDeltaY = scrollDeltaY;
+    } else if (this.targetScrollTop === this.state.scrollTop) {
+      this.reachedTargetScrollTop = true;
+    }
+
     if (autoHeight) {
       return (
         <ScrollView
@@ -287,6 +308,7 @@ class ListView extends Component<Props, State> {
           scrollWithAnimation={isScrollWithAnimation}
           scrollIntoView={scrollIntoView}
           onScroll={this.onScroll}
+          scrollTop={this.targetScrollTop}
         >
           <View
             style={{ minHeight: "100%", overflowY: "hidden" }}
@@ -360,6 +382,7 @@ class ListView extends Component<Props, State> {
           onScrollToLower={this.handleScrollToLower}
           scrollWithAnimation={isScrollWithAnimation}
           onScroll={this.onScroll}
+          scrollTop={this.targetScrollTop}
         >
           <View
             style={{ minHeight: "100%", overflowY: "hidden" }}
