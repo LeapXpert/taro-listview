@@ -35,7 +35,8 @@ export interface Props extends React.Props<any> {
   lazyStorage?: string;
   autoHeight?: boolean;
   scrollIntoView?: string;
-  isScrollWithAnimation?: boolean
+  isScrollWithAnimation?: boolean;
+  scrollDeltaY?: number;
 }
 
 export interface Indicator {
