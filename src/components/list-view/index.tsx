@@ -254,7 +254,8 @@ class ListView extends Component<Props, State> {
       circleColor,
       autoHeight,
       scrollIntoView,
-      isScrollWithAnimation = false
+      isScrollWithAnimation = false,
+      scrollTop,
     } = this.props;
     const {
       launchError = false,
@@ -287,6 +288,7 @@ class ListView extends Component<Props, State> {
           scrollWithAnimation={isScrollWithAnimation}
           scrollIntoView={scrollIntoView}
           onScroll={this.onScroll}
+          scrollTop={scrollTop}
         >
           <View
             style={{ minHeight: "100%", overflowY: "hidden" }}
@@ -360,6 +362,7 @@ class ListView extends Component<Props, State> {
           onScrollToLower={this.handleScrollToLower}
           scrollWithAnimation={isScrollWithAnimation}
           onScroll={this.onScroll}
+          scrollTop={scrollTop}
         >
           <View
             style={{ minHeight: "100%", overflowY: "hidden" }}
